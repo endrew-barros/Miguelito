@@ -6,6 +6,7 @@ const PedidoControllers = require('../controllers/PedidoControllers');
 const AdminControllers = require('../controllers/AdminControllers');
 const DrinkControllers = require('../controllers/DrinkControllers');
 const CozinhaControllers = require('../controllers/CozinhaControllers');
+const EstoqueControllers = require('../controllers/EstoqueControllers');
 
 const routes = express.Router();
 
@@ -19,5 +20,5 @@ routes.get('/pedido', PedidoControllers.store);
 routes.get('/admin', AdminControllers.store);
 routes.get('/admin/drink', DrinkControllers.store);
 routes.get('/admin/cozinha', CozinhaControllers.store);
-
+routes.post('/admin/estoque', EstoqueControllers.store);
 module.exports = routes;
