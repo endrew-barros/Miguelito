@@ -11,10 +11,14 @@ module.exports = {
 
     }, 
     async delete(req, res){
-        const { id_produto } = req.query;
-        console.log({id_produto})
-            const remove = await Produto.deleteOne({ id_produto });
-            return res.json(remove);
+        const {id_produto} = req.params;
+        var retorno = await Produto.findOneAndDelete({_id: id_produto}, (err) => {
+            if(err){
+                return res.status(400).json({error: true, msg: "Ops ! Algo deu errado."})
+            }
+                return res.status(200).json({error: false, msg: "Apagado com Sucesso"})
+            });           
+
     }, 
     async index(req, res){
         const { tipo } = req.query;
@@ -22,6 +26,17 @@ module.exports = {
         return res.json({ dados });
     }, 
     async update(req, res){
-        return res.json({msg:"update"});
+        const {id_produto} = req.params;
+        const {produto, quantidade} = req.body;
+        var valores = await Produto.findByIdAndUpdate({_id: id_produto}, 
+            {
+                $set: {produto, quantidade}
+            }, {upsert: true}, 
+            (err) => {
+                if(err){
+                    return res.status(400).json({error: true, msg: "Ops ! Algo deu errado."})
+                }
+                    return res.status(200).json({error: false, msg: "Alterado com Sucesso"})
+                });
     },
 }

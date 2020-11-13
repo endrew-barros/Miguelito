@@ -25,8 +25,8 @@ routes.delete('/admin/comanda/encerrar/:id_comanda', ComandaControllers.store); 
 routes.get('/admin/bar/listar', BarControllers.index); //Bar Listar
 routes.get('/admin/cozinha/listar', CozinhaControllers.store); //Cozinha Listar
 routes.post('/admin/produto/cadastrar', ProdutoControllers.store); //Produto Adicionar
-routes.post('/admin/produto/remover', ProdutoControllers.delete); //Produto Remover 
-routes.put('/admin/produto/alterar/:id_produto', ProdutoControllers.update); //Produto Alterar 
+routes.delete('/admin/produto/remover/:id_produto', ProdutoControllers.delete); //Produto Remover 
+routes.post('/admin/produto/alterar/:id_produto', ProdutoControllers.update); //Produto Alterar 
 routes.get('/admin/caixa/listar', CaixaControllers.index); //Caixa Listar
 routes.delete('/admin/caixa/listar', CaixaControllers.delete); //Caixa Deletar
 
