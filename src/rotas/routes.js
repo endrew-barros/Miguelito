@@ -1,24 +1,33 @@
 const express = require('express');
 
 const IndexControllers = require('../controllers/IndexControllers');
-const CardapioControllers = require('../controllers/CardapioControllers');
-const PedidoControllers = require('../controllers/PedidoControllers');
+const BuscarProdutoControllers = require('../controllers/BuscarProdutoControllers');
+const ComandaControllers = require('../controllers/ComandaControllers');
 const AdminControllers = require('../controllers/AdminControllers');
-const DrinkControllers = require('../controllers/DrinkControllers');
+const BarControllers = require('../controllers/BarControllers');
 const CozinhaControllers = require('../controllers/CozinhaControllers');
-const EstoqueControllers = require('../controllers/EstoqueControllers');
+const ProdutoControllers = require('../controllers/ProdutoControllers');
+const CaixaControllers = require('../controllers/CaixaControllers');
 
 const routes = express.Router();
 
-// const IndexControllers = (req,res)=>{
-//   return res.json({msg:"Ola"});
-// }
+//Cliente
+routes.get('/index', IndexControllers.store); 
+routes.post('/comanda/adicionar', ComandaControllers.store);
+routes.get('/produto/listar', ProdutoControllers.index);
+routes.get('/produto/buscar/:prod_nome', BuscarProdutoControllers.index);
 
-routes.get('/index', IndexControllers.store);
-routes.get('/cardapio', CardapioControllers.store);
-routes.get('/pedido', PedidoControllers.store);
-routes.get('/admin', AdminControllers.store);
-routes.get('/admin/drink', DrinkControllers.store);
-routes.get('/admin/cozinha', CozinhaControllers.store);
-routes.post('/admin/estoque', EstoqueControllers.store);
+//Admin
+routes.get('/admin', AdminControllers.store); //Login
+routes.get('/admin/comanda/listar/', ComandaControllers.store); //Comanda Listar
+routes.get('/admin/comanda/alterar/:id_comanda', ComandaControllers.store); //Comanda Alterar
+routes.delete('/admin/comanda/encerrar/:id_comanda', ComandaControllers.store); //Comanda Excluir
+routes.get('/admin/bar/listar', BarControllers.index); //Bar Listar
+routes.get('/admin/cozinha/listar', CozinhaControllers.store); //Cozinha Listar
+routes.post('/admin/produto/cadastrar', ProdutoControllers.store); //Produto Adicionar
+routes.post('/admin/produto/remover', ProdutoControllers.delete); //Produto Remover 
+routes.put('/admin/produto/alterar/:id_produto', ProdutoControllers.update); //Produto Alterar 
+routes.get('/admin/caixa/listar', CaixaControllers.index); //Caixa Listar
+routes.delete('/admin/caixa/listar', CaixaControllers.delete); //Caixa Deletar
+
 module.exports = routes;

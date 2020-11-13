@@ -1,7 +1,7 @@
 module.exports = {
 
     store (req, res){
-        return res.json({msg:"PEDIDO"});
+        return res.json({msg:"pedido"});
     }
 
 };
