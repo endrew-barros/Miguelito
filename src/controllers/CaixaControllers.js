@@ -22,7 +22,7 @@ module.exports = {
             if (err) {
                 return res.status(400).json({ error: true, msg: "Ops ! Algo deu errado." })
             }
-            return res.status(200).json({ error: false, msg: "Removido comSucesso !!!" })
+            return res.status(200).json({ error: false, msg: "Removido com Sucesso !!!" })
         });
     }
 }

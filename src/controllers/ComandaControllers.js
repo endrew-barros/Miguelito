@@ -6,8 +6,8 @@ module.exports = {
         return res.json(dados);
     },
     async store(req, res) {
-        const { mesa, cliente, pedidos, valorTotal } = req.body;
-        var comanda = await Comanda.create({ mesa, cliente, pedidos, valorTotal });
+        const { mesa, cliente, pedidos_cozinha, pedidos_bar, valorTotal } = req.body;
+        var comanda = await Comanda.create({ mesa, cliente, pedidos_cozinha, pedidos_bar, valorTotal });
         return res.json({ comanda });
     },
     async delete(req, res) {
@@ -21,9 +21,9 @@ module.exports = {
     },
     async update(req, res) {
         const { id_comanda } = req.params;
-        const { mesa, cliente, pedidos, valorTotal } = req.body;
+        const { mesa, cliente, pedidos_cozinha, pedidos_bar, valorTotal } = req.body;
         await Comanda.findByIdAndUpdate({ _id: id_comanda }, {
-            $set: { mesa, cliente, pedidos, valorTotal }
+            $set: { mesa, cliente, pedidos_cozinha, pedidos_bar, valorTotal }
         }, { upsert: true }, (err) => {
             if (err) {
                 return res.status(400).json({ error: true, msg: "Ops ! Algo deu errado." })

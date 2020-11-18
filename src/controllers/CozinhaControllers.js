@@ -1,7 +1,9 @@
+const Comanda = require('../models/Comanda');
+
+
 module.exports = {
-
-    store (req, res){
-        return res.json({msg:"COZINHA"});
+    async index(req, res){
+        var dados = await Comanda.find().select('mesa cliente pedidos_cozinha')
+        return res.json(dados);  
     }
-
-};
+}

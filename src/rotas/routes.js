@@ -23,7 +23,7 @@ routes.get('/admin/comanda/listar', ComandaControllers.index); //Comanda Listar
 routes.post('/admin/comanda/alterar/:id_comanda', ComandaControllers.update); //Comanda Alterar
 routes.delete('/admin/comanda/encerrar/:id_comanda', ComandaControllers.delete); //Comanda Excluir
 routes.get('/admin/bar/listar', BarControllers.index); //Bar Listar
-routes.get('/admin/cozinha/listar', CozinhaControllers.store); //Cozinha Listar
+routes.get('/admin/cozinha/listar', CozinhaControllers.index); //Cozinha Listar
 routes.post('/admin/produto/cadastrar', ProdutoControllers.store); //Produto Adicionar
 //routes.get('/admin/produto/cadastrar', ProdutoControllers.store); //Produto Adicionar
 routes.delete('/admin/produto/remover/:id_produto', ProdutoControllers.delete); //Produto Remover 
