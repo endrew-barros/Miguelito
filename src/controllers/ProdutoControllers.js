@@ -2,6 +2,7 @@ const Produto = require('../models/Produto');
 module.exports = {
     async store(req, res) {
         const { produto, quantidade, valor, tipo } = req.body;
+        console.log({ produto, quantidade, valor, tipo })
         var armazem = await Produto.findOne({ produto });
         if (!armazem) {
             const produtoCreate = await Produto.create({ produto, quantidade, valor, tipo });
@@ -21,8 +22,13 @@ module.exports = {
     },
     async index(req, res) {
         const { tipo } = req.query;
-        const dados = await Produto.find({ tipo });
-        return res.json({ dados });
+        if(tipo == 0 || tipo == null){
+            const dados = await Produto.find();
+            return res.json({ dados });
+        }else{
+            const dados = await Produto.find({tipo});
+            return res.json({ dados });
+        }
     },
     async update(req, res) {
         const { id_produto } = req.params;
