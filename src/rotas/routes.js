@@ -1,4 +1,9 @@
 const express = require('express');
+const mongoose = require('mongoose');
+
+const multer = require('multer');
+const multerConfig = require('../config/multer')
+const Post = require('../models/Post')
 
 const IndexControllers = require('../controllers/IndexControllers');
 const BuscarProdutoControllers = require('../controllers/BuscarProdutoControllers');
@@ -31,4 +36,24 @@ routes.post('/admin/produto/alterar/:id_produto', ProdutoControllers.update); //
 routes.get('/admin/caixa/listar', CaixaControllers.index); //Caixa Listar
 routes.delete('/admin/caixa/remover/:id_comanda', CaixaControllers.delete); //Caixa Deletar
 
+routes.get('/post/listar', async(req,res)=>{
+    const posts =await Post.find();
+    return res.json(posts)
+})
+routes.post("/post", multer(multerConfig).single("file"), async(req,res)=>{
+    const {originalname: name,size, key, location: url=""}= req.file;
+    console.log(req.file);
+    const post= await Post.create({
+        name,
+        size,
+        key,
+        url
+    });
+    return res.json(post);
+});
+routes.delete('/post/:id',async(req,res)=>{
+    const post = await Post.findById(req.params.id);
+    await post.remove();
+    return res.json({msg: "imagem deletada"})
+})
 module.exports = routes;
