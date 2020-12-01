@@ -57,3 +57,4 @@ routes.delete('/post/:id',async(req,res)=>{
     return res.json({msg: "imagem deletada"})
 })
 module.exports = routes;
+// ----------------------------pronto----------------------
